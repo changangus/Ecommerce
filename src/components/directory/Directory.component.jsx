@@ -37,13 +37,10 @@ const Directory = () => {
     linkUrl: 'shop/mens'
   }]);
   
-  const allSections = sections.map(section => (
+  const allSections = sections.map(({id, ...otherSectionProps}) => (
     <MenuItem 
-      title={section.title}
-      image={section.imageUrl}
-      size={section.size}
-      key={section.id}
-      link={section.linkUrl} 
+      key={id}
+      {...otherSectionProps}
     />
   ));
   return (
