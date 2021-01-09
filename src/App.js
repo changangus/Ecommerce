@@ -1,13 +1,15 @@
 import React from 'react';
+// dev dependent components
+import { Route, Switch } from 'react-router-dom';
 // page components
 import Homepage from './pages/homepage/Homepage.component';
 
 
 function App() {
   return (
-    <div>
-      <Homepage /> 
-    </div>
+    <Switch>
+      <Route exact path='/' render={() => <Homepage />} />
+    </Switch>
   );
 }
 
