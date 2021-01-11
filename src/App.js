@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 // dev dependent components
 import { Route, Switch } from 'react-router-dom';
 // page components
