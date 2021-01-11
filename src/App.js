@@ -5,14 +5,19 @@ import { Route, Switch } from 'react-router-dom';
 // page components
 import Homepage from './pages/homepage/Homepage.component';
 import Shop from './pages/shop/Shop.component';
+import Header from './components/header/Header.component';
 
 
 function App() {
   return (
-    <Switch>
-      <Route exact path='/' render={() => <Homepage />} />
-      <Route exact path='/shop' render={() => <Shop /> } />
-    </Switch>
+    <div>
+      <Header /> 
+      <Switch>
+        <Route exact path='/' render={() => <Homepage />} />
+        <Route exact path='/shop' render={() => <Shop /> } />
+      </Switch>
+    </div>
+
   );
 }
 
