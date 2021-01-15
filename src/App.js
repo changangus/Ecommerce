@@ -8,23 +8,32 @@ import Shop from './pages/shop/Shop.component';
 import Header from './components/header/Header.component';
 import RegisterAndSignInPage from './pages/register-page/register';
 // Auth
-import { auth } from './firebase/firebase.utils';
-
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
   
   useEffect(() => {
-      const unSubscribeFromAuth = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      console.log(user);
+      const unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          })
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
       return unSubscribeFromAuth;
       } 
     )
-  }, []);
+  }, []); 
 
-  console.log('AFTER:', currentUser);
+  console.log(currentUser);
 
   return (
     <div>
