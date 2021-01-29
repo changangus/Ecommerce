@@ -12,6 +12,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 // Redux
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+
 function App({ setCurrentUser, currentUser }) {
   
   useEffect(() => {
