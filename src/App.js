@@ -7,14 +7,16 @@ import Homepage from './pages/homepage/Homepage.component';
 import Shop from './pages/shop/Shop.component';
 import Header from './components/header/Header.component';
 import RegisterAndSignInPage from './pages/register-page/register';
+import CheckoutPage from './pages/checkout-page/Checkout.component';
 // Auth
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 // Redux
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
-// Selectors;
+// Selectors
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
+
 
 function App({ setCurrentUser, currentUser }) {
   
@@ -46,6 +48,7 @@ function App({ setCurrentUser, currentUser }) {
         <Route exact path='/' render={() => <Homepage />} />
         <Route exact path='/shop' render={() => <Shop /> } />
         <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <RegisterAndSignInPage />} />
+        <Route exact path='/checkout' render={() => <CheckoutPage />} />
       </Switch>
     </div>
   );
