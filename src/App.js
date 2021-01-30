@@ -21,26 +21,24 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 function App({ setCurrentUser, currentUser }) {
   
   useEffect(() => {
-      const unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if(userAuth) {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-
+ 
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
             id: snapShot.id,
-            ...snapShot.data(),
-          })
+            ...snapShot.data()
+          });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
-      return unSubscribeFromAuth;
-      } 
-    )
-  }); 
-
+      setCurrentUser(userAuth);
+    });
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, []); 
   
-
   return (
     <div>
       <Header/> 
