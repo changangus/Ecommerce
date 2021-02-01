@@ -44,7 +44,7 @@ function App({ setCurrentUser, currentUser }) {
       <Header/> 
       <Switch>
         <Route exact path='/' render={() => <Homepage />} />
-        <Route exact path='/shop' render={() => <Shop /> } />
+        <Route path='/shop' render={(routeProps) => <Shop {...routeProps} /> } />
         <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <RegisterAndSignInPage />} />
         <Route exact path='/checkout' render={() => <CheckoutPage />} />
       </Switch>
