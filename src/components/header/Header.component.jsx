@@ -2,7 +2,7 @@ import React from 'react';
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/CartIcon.component';
 // Styled Components:
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionDiv, OptionLink } from './Header.styles'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './Header.styles'
 // Redux:
 import { connect } from 'react-redux';
 import CartDropdown from '../cart-dropdown/CartDropdown.component';
