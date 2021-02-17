@@ -16,33 +16,17 @@ import { setCurrentUser } from './redux/user/user.actions';
 // Selectors
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
+// Actions
+import { checkUserSession } from './redux/user/user.actions';
 /* 
 **Used to add firebase collection:**
 import { selectCollectionsForPreview } from './redux/shop/shop.selector'; 
 */
 
 
-function App({ setCurrentUser, currentUser, /*collectionsArray */}) {
+function App({ checkUserSession, currentUser, /*collectionsArray */}) {
 	useEffect(() => {
-
-		// addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }) => ({ title, items })));
-
-		const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-			if (userAuth) {
-				const userRef = await createUserProfileDocument(userAuth);
-
-				userRef.onSnapshot((snapShot) => {
-					setCurrentUser({
-						id: snapShot.id,
-						...snapShot.data()
-					});
-				});
-			}
-			setCurrentUser(userAuth);
-		});
-		return () => {
-			unsubscribeFromAuth();
-		};
+		checkUserSession()
 	}, []);
 
 	return (
@@ -68,7 +52,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	setCurrentUser: (user) => dispatch(setCurrentUser(user))
+	checkUserSession: () =>  dispatch(checkUserSession())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
