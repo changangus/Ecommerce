@@ -8,26 +8,18 @@ import Shop from './pages/shop/Shop.component';
 import Header from './components/header/Header.component';
 import RegisterAndSignInPage from './pages/register-page/register';
 import CheckoutPage from './pages/checkout-page/Checkout.component';
-// Auth
-import { auth, createUserProfileDocument, /*addCollectionAndDocuments*/} from './firebase/firebase.utils';
 // Redux
 import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
 // Selectors
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
 // Actions
 import { checkUserSession } from './redux/user/user.actions';
-/* 
-**Used to add firebase collection:**
-import { selectCollectionsForPreview } from './redux/shop/shop.selector'; 
-*/
 
-
-function App({ checkUserSession, currentUser, /*collectionsArray */}) {
+function App({ checkUserSession, currentUser}) {
 	useEffect(() => {
 		checkUserSession()
-	}, []);
+	}, [checkUserSession]);
 
 	return (
 		<div>

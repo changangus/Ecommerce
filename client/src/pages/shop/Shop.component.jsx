@@ -9,7 +9,7 @@ const Shop = ({ match, fetchCollectionsStart }) => {
 
 	useEffect(() => {
 		fetchCollectionsStart();
-	}, []);
+	}, [fetchCollectionsStart]);
 
 	return (
 		<div className="shop-page">
