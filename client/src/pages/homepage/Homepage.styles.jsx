@@ -6,4 +6,8 @@ export const HomePageContainer = styled.div`
     align-items: center;
     padding: 20px 80px;
     height: 100vh;
+
+    @media screen and (max-width: 800px) {
+        padding: 5px;
+    }
 `; 

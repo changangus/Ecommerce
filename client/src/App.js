@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import { GlobalStyle } from './global.styles';
 // dev dependent components
 import { Route, Switch, Redirect } from 'react-router-dom';
 // page components
@@ -23,17 +23,18 @@ function App({ checkUserSession, currentUser}) {
 
 	return (
 		<div>
-			<Header />
-			<Switch>
-				<Route exact path="/" render={() => <Homepage />} />
-				<Route path="/shop" render={(routeProps) => <Shop {...routeProps} />} />
-				<Route
-					exact
-					path="/signin"
-					render={() => (currentUser ? <Redirect to="/" /> : <RegisterAndSignInPage />)}
-				/>
-				<Route exact path="/checkout" render={() => <CheckoutPage />} />
-			</Switch>
+			<GlobalStyle />
+				<Header />
+				<Switch>
+					<Route exact path="/" render={() => <Homepage />} />
+					<Route path="/shop" render={(routeProps) => <Shop {...routeProps} />} />
+					<Route
+						exact
+						path="/signin"
+						render={() => (currentUser ? <Redirect to="/" /> : <RegisterAndSignInPage />)}
+					/>
+					<Route exact path="/checkout" render={() => <CheckoutPage />} />
+				</Switch>
 		</div>
 	);
 }
